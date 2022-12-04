@@ -12,7 +12,8 @@ const ref = {
 }
 
 let startTime = null;
-const currentTime = Date.now();
+
+
 ref.startButton.setAttribute('disabled', true);
 ref.startButton.addEventListener('click', onClickStartButton);
 
@@ -28,11 +29,12 @@ const options = {
         console.log(selectedDates[0]);
 
         startTime = selectedDates[0];
-
-        if (startTime >= Date.now()) {
+        
+        
+        if (startTime >= Date.now()) { 
             ref.startButton.removeAttribute('disabled');
-          
-      } else {
+            onInputDataValue();
+        } else {
             window.alert('Please choose a date in the future');
         }
   },
@@ -40,20 +42,22 @@ const options = {
 
 flatpickr(ref.dateTime, options);
 
-function onClickStartButton() {
-    ref.startButton.setAttribute('disabled', true);
+function onInputDataValue() {
 
-    const timerId = setInterval(() => {
-
-        const deltaTime = startTime - Date.now();
+        deltaTime = startTime - Date.now();
         const { days, hours, minutes, seconds } = convertMs(deltaTime);
         console.log(`${days}, ${hours}, ${minutes}, ${seconds} `);
-
+            
         ref.days.textContent = days;
         ref.hours.textContent = hours;
         ref.minutes.textContent = minutes;
         ref.seconds.textContent = seconds;
+}
+function onClickStartButton() {
+    ref.startButton.setAttribute('disabled', true);
 
+    const timerId = setInterval(() => {
+        onInputDataValue();
         if (deltaTime < 1000) {
             clearInterval(timerId);
         }
