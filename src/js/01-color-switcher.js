@@ -25,6 +25,3 @@ function onBtnStop() {
     startBtn.removeAttribute('disabled');
 };
 
-
-
-
