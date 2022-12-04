@@ -11,6 +11,7 @@ const ref = {
     seconds: document.querySelector('[data-seconds]')
 }
 
+let deltaTime = null;
 let startTime = null;
 
 
@@ -27,7 +28,7 @@ const options = {
     
     onClose(selectedDates) {
         console.log(selectedDates[0]);
-
+        
         startTime = selectedDates[0];
         
         
