@@ -12,7 +12,7 @@ const ref = {
 }
 
 let startTime = null;
-
+const currentTime = Date.now();
 ref.startButton.setAttribute('disabled', true);
 ref.startButton.addEventListener('click', onClickStartButton);
 
@@ -21,18 +21,20 @@ const options = {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
+    minDate: "today",
     minuteIncrement: 1,
     
     onClose(selectedDates) {
         console.log(selectedDates[0]);
-        
+
         startTime = selectedDates[0];
 
-      if (startTime >= Date.now()) {
-        ref.startButton.removeAttribute('disabled');
-    } else {
-        window.alert('Please choose a date in the future')
-    }
+        if (startTime >= Date.now()) {
+            ref.startButton.removeAttribute('disabled');
+          
+      } else {
+            window.alert('Please choose a date in the future');
+        }
   },
 };
 
@@ -85,6 +87,4 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-
 
