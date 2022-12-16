@@ -31,7 +31,6 @@ const options = {
         
         startTime = selectedDates[0];
         
-        
         if (startTime >= Date.now()) { 
             ref.startButton.removeAttribute('disabled');
             onInputDataValue();
@@ -54,6 +53,7 @@ function onInputDataValue() {
         ref.minutes.textContent = minutes;
         ref.seconds.textContent = seconds;
 }
+
 function onClickStartButton() {
     ref.startButton.setAttribute('disabled', true);
 
